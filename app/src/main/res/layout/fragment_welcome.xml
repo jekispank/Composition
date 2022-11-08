@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true">
+
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       tools:context=".presentation.WelcomeFragment">
+
+       <ImageView
+           android:id="@+id/iv_logo"
+           android:layout_width="wrap_content"
+           android:layout_height="150dp"
+           android:layout_gravity="center"
+           android:layout_margin="32dp"
+           android:src="@drawable/ic_brain"
+           android:contentDescription="Welcome logo"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent"/>
+
+       <TextView
+           android:id="@+id/tv_title"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="@string/composition_of_the_number"
+           android:textSize="24sp"
+           android:layout_margin="16dp"
+           app:layout_constraintTop_toBottomOf="@+id/iv_logo"/>
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="@string/game_rules"
+           android:textSize="16sp"
+           android:layout_margin="16dp"
+           app:layout_constraintTop_toBottomOf="@+id/tv_title"/>
+
+       <Button
+           android:id="@+id/bt_understand"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           app:layout_constraintBottom_toBottomOf="parent"
+           android:text="@string/understand"
+           android:layout_gravity="bottom"/>
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
