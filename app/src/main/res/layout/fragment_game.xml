@@ -13,6 +13,7 @@
         android:layout_margin="8dp"
         android:textColor="@color/purple_700"
         android:textSize="24sp"
+        android:text="00:00"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
