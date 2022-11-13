@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.jekis.composition.R
 import com.jekis.composition.databinding.FragmentChooseLevelBinding
 import com.jekis.composition.domain.entity.Level
@@ -45,15 +46,6 @@ class ChooseLevelFragment : Fragment() {
     }
 
     private fun launchGameFragment(level: Level) {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.mainContainer, GameFragment.newInstance(level))
-            .addToBackStack(null)
-            .commit()
-    }
-
-    companion object {
-        fun newInstance(): Fragment {
-            return ChooseLevelFragment()
-        }
+            findNavController().navigate(ChooseLevelFragmentDirections.actionChooseLevelFragmentToGameFragment(level))
     }
 }
