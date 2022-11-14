@@ -2,7 +2,7 @@
 <layout>
     <data>
         <variable
-            name="viewModel"
+            name="gameViewModel"
             type="com.jekis.composition.presentation.GameViewModel" />
     </data>
 
@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="@{viewModel.formattedTime}"
+            android:text="@{gameViewModel.formattedTime}"
             android:textColor="@color/purple_700"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -37,6 +37,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed"
+            app:numberAsText="@{gameViewModel.question.sum}"
             tools:text="1" />
 
         <TextView
@@ -51,6 +52,7 @@
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvSum"
+            app:numberAsText="@{gameViewModel.question.visibleNumber}"
             tools:text="7" />
 
         <TextView
@@ -72,6 +74,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_green_light"
+            android:text="@{gameViewModel.question.options.get(0).toString()}"
+            app:onOptionClickListener="@{(option) -> gameViewModel.chooseAnswer(option)}"
             app:layout_constraintBottom_toTopOf="@id/tvOption4"
             app:layout_constraintEnd_toStartOf="@id/tvOption5"
             app:layout_constraintHorizontal_chainStyle="spread"
@@ -84,6 +88,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_orange_light"
+            android:text="@{gameViewModel.question.options.get(1).toString()}"
+            app:onOptionClickListener="@{(option) -> gameViewModel.chooseAnswer(option)}"
             app:layout_constraintBottom_toTopOf="@id/tvOption4"
             app:layout_constraintEnd_toStartOf="@id/tvOption6"
             app:layout_constraintStart_toEndOf="@id/tvOption4"
@@ -95,6 +101,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_purple"
+            android:text="@{gameViewModel.question.options.get(2).toString()}"
+            app:onOptionClickListener="@{(option) -> gameViewModel.chooseAnswer(option)}"
             app:layout_constraintBottom_toTopOf="@id/tvOption4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tvOption5"
@@ -106,6 +114,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_blue_light"
+            android:text="@{gameViewModel.question.options.get(3).toString()}"
+            app:onOptionClickListener="@{(option) -> gameViewModel.chooseAnswer(option)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tvOption5"
             app:layout_constraintHorizontal_chainStyle="spread"
@@ -118,6 +128,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_red_light"
+            android:text="@{gameViewModel.question.options.get(4).toString()}"
+            app:onOptionClickListener="@{(option) -> gameViewModel.chooseAnswer(option)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tvOption6"
             app:layout_constraintStart_toEndOf="@id/tvOption4"
@@ -129,17 +141,20 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_blue_bright"
+            android:text="@{gameViewModel.question.options.get(5).toString()}"
+            app:onOptionClickListener="@{(option) -> gameViewModel.chooseAnswer(option)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tvOption5"
-            tools:text="5" />
+            tools:text="6" />
 
         <TextView
             android:id="@+id/tvAnswersProgress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="@string/progress_answers"
+            android:text="@{gameViewModel.progressAnswers}"
+            app:enoughCount="@{gameViewModel.enoughCount}"
             app:layout_constraintBottom_toTopOf="@id/progressBar"
             app:layout_constraintTop_toBottomOf="@id/tvLeftNumber"
             app:layout_constraintVertical_chainStyle="spread" />
@@ -151,6 +166,9 @@
             android:layout_height="wrap_content"
             android:max="100"
             android:secondaryProgressTint="@android:color/background_dark"
+            android:progress="@{gameViewModel.percentOfRightAnswers}"
+            android:secondaryProgress="@{gameViewModel.minPercent}"
+            app:enoughPercent="@{gameViewModel.enoughPercent}"
             app:layout_constraintBottom_toTopOf="@id/tvOption2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
